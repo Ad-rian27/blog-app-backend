@@ -13,6 +13,37 @@ app.use(Cors())
 Mongoose.connect("mongodb+srv://adrian:adrian123@cluster0.veegpvo.mongodb.net/blogapp?appName=Cluster0")
 
 
+//View All
+app.post("/viewall", (req, res) => {
+
+    let token = req.headers.token
+
+    jwt.verify(token, "blogApp", (error, decoded) => {
+
+        if (decoded && decoded.email) {
+
+            postModel.find().then(
+                (items) => {
+                    res.json(items)
+                }
+            ).catch(
+                (error) => {
+                    res.json({ "status": "error" })
+                }
+            )
+
+        } else {
+
+            res.json({
+                "status": "Invalid Authentication"
+            })
+
+        }
+
+    })
+
+})
+
 //Posts
 app.post("/create", async (req, res) => {
 
