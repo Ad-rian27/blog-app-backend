@@ -39,12 +39,12 @@ app.post("/signin", async (req, res) => {
                                 })
                             }
                             else {
-res.json({ "status": "success", "token":token, "userId":items[0]._id })
+                                res.json({ "status": "success", "token": token, "userId": items[0]._id })
                             }
                         }
                     )
                 } else {
-                    res.json({ "status": "Incorrect Password"})
+                    res.json({ "status": "Incorrect Password" })
                 }
 
             } else {
