@@ -4,6 +4,7 @@ const Bcrypt = require("bcrypt")
 const Cors = require("cors")
 const jwt = require("jsonwebtoken")
 const userModel = require("./models/users")
+const postModel = require("./models/posts")
 
 let app = Express()
 
@@ -39,12 +40,12 @@ app.post("/signin", async (req, res) => {
                                 })
                             }
                             else {
-res.json({ "status": "success", "token":token, "userId":items[0]._id })
+                                res.json({ "status": "success", "token": token, "userId": items[0]._id })
                             }
                         }
                     )
                 } else {
-                    res.json({ "status": "Incorrect Password"})
+                    res.json({ "status": "Incorrect Password" })
                 }
 
             } else {
